@@ -12,6 +12,7 @@ export default class Poo extends Phaser.GameObjects.Sprite {
         this.setDepth(y + (this.displayHeight / 2));
 
         this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
     }
 
     update() {

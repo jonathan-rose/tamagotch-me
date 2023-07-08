@@ -48,6 +48,11 @@ export default class GameScene extends Phaser.Scene {
         this.border = this.add.image(300, 300, 'border6');
         this.border.depth = 99999999;
         this.border.scale = 0.75;
+
+        this.foodIcon = this.add.image(150, 460, 'foodIconGrey');
+        this.playIcon = this.add.image(250, 460, 'playIconGrey');
+        this.flushIcon = this.add.image(350, 460, 'flushIconGrey');
+        this.medicineIcon = this.add.image(450, 460, 'medicineIconGrey');
     }
 
     update () {
@@ -83,8 +88,32 @@ export default class GameScene extends Phaser.Scene {
      */
     flush() {
         this.lastFlushTime = this.time.now;
-        // @TODO: implement me
-        console.log("FLUSHING");
+
+        this.flushWipe = this.add.sprite(450, 300, 'flushWipe');
+        this.physics.add.existing(this.flushWipe);
+        this.physics.add.collider(this.flushWipe, this.pet.poops, this.removePoop, null, this);
+
+        this.tweens.add({
+            targets: this.flushWipe,
+            x: "-=400",
+            onComplete: () => {
+                this.flushWipe.destroy();
+            }
+        });
+
+        if (this.model.soundOn === true)
+        {
+            this.sound.play('flush');
+        }
+
+        this.flushIcon.setTexture('flushIconBlack');
+        this.time.delayedCall(800, () => {
+            this.flushIcon.setTexture('flushIconGrey')
+        }, null, this);
+    }
+
+    removePoop(wave, poop) {
+        poop.destroy();
     }
 
     /**
