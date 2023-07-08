@@ -93,6 +93,8 @@ export default class Pet extends Phaser.GameObjects.Sprite {
             this.scene,
             petCurrentPosition.x + offsetX,
             petCurrentPosition.y + offsetY);
+
+        this.poops.add(newPoop);
     }
 
     /**
