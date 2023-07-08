@@ -10,8 +10,13 @@ export default class Egg extends Phaser.GameObjects.Sprite {
         this.wobbleSpeed = 0.1;
         this.wobbleAngle = 0;
 
+        this.wobbleSpeed = 0.1;
+        this.wobbleAngle = 0;
+
         this.setDepth(0);
 
+        this.setInteractive();
+        this.on('pointerdown', this.wobbleEgg, this);
         this.setInteractive();
         this.on('pointerdown', this.wobbleEgg, this);
         this.scene.physics.add.existing(this);
