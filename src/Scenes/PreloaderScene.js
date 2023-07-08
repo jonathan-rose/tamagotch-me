@@ -75,7 +75,15 @@ export default class PreloaderScene extends Phaser.Scene {
 
         // load assets needed in our game
 
-        this.load.image('logo', 'assets/logo.png');
+        this.load.image('logo', 'assets/img/logo.png');
+
+        this.load.audio('music', ['assets/audio/Ambler.mp3']);
+        this.load.audio('cheep-mid', ['assets/audio/cheep-mid.mp3']);
+        this.load.audio('cheep-high', ['assets/audio/cheep-high.mp3']);
+        this.load.audio('cheep-low', ['assets/audio/cheep-low.mp3']);
+        this.load.audio('die', ['assets/audio/die.mp3']);
+        this.load.audio('eat', ['assets/audio/eat.mp3']);
+        this.load.audio('flush', ['assets/audio/flush.mp3']);
 
         // remove progress bar when complete
         this.load.on('complete', function () {
