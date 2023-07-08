@@ -37,7 +37,8 @@ export default class GameScene extends Phaser.Scene {
         this.add.image(400, 400, 'gameBackground');
 
         egg = new Egg(this, this.petStart.x, this.petStart.y);
-        // pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
+        pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
+        pet.visible = false;
 
         this.border = this.add.image(400, 400, 'border6');
         this.border.depth = 100;
@@ -79,5 +80,9 @@ export default class GameScene extends Phaser.Scene {
             pet.doPoop();
             this.playPooSound();
         }
+    }
+
+    setPetVisible () {
+        pet.visible = true;
     }
 }
