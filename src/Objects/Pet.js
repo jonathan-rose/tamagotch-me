@@ -10,7 +10,7 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         this.texture = texture;
         this.frameRate = 3;
         this.setDepth(1);
-        // this.setScale(1);
+        this.setScale(0.75);
 
         this.poops = new Phaser.GameObjects.Group(this.scene);
 
@@ -52,7 +52,7 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         this.x -= 5;
         this.flipX = true;
     }
-    
+
     moveRight() {
         this.x += 5;
         this.flipX = false;
@@ -75,8 +75,8 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         var offsetY = Phaser.Math.Between(-30, 30);
 
         let newPoop = new Poop(
-            this.scene, 
-            petCurrentPosition.x + offsetX, 
+            this.scene,
+            petCurrentPosition.x + offsetX,
             petCurrentPosition.y + offsetY);
 
         let f = Math.random();
@@ -90,5 +90,11 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         newPoop.depth = poopDepth;
 
         this.poops.add(newPoop);
+    }
+
+    update() {
+
+        // @TODO: use iterator properly?????
+        this.poops.children.iterate((p) => {p.update();}, this);
     }
 }
