@@ -89,13 +89,13 @@ export default class GameScene extends Phaser.Scene {
     flush() {
         this.lastFlushTime = this.time.now;
 
-        this.flushWipe = this.add.sprite(450, 300, 'flushWipe');
+        this.flushWipe = this.add.sprite(500, 300, 'flushWipe');
         this.physics.add.existing(this.flushWipe);
         this.physics.add.collider(this.flushWipe, this.pet.poops, this.removePoop, null, this);
 
         this.tweens.add({
             targets: this.flushWipe,
-            x: "-=400",
+            x: "-=450",
             onComplete: () => {
                 this.flushWipe.destroy();
             }
