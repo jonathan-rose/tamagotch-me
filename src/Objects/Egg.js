@@ -31,7 +31,7 @@ export default class Egg extends Phaser.GameObjects.Sprite {
             // loop: true
             }
         )
-S
+        
         this.setDepth(0);
         this.setOrigin(0.5, 1);
 
