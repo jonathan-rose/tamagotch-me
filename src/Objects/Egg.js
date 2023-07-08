@@ -19,22 +19,21 @@ export default class Egg extends Phaser.GameObjects.Sprite {
     }
 
     wobbleEgg () {
-        this.wobbleSpeed += 0.1;
+        // this.wobbleSpeed += 0.1;
 
-        const wobbleDirection = Phaser.Math.RND.pick([-1, 1]);
+        // const wobbleDirection = Phaser.Math.RND.pick([-1, 1]);
 
-        var wobbleAngle = wobbleDirection * this.wobbleSpeed;
+        // var wobbleAngle = wobbleDirection * this.wobbleSpeed;
+
+        this.wobbleDirection = Phaser.Math.RND.pick([-1, 1]);
 
         this.scene.tweens.add({
             targets: this,
-            angle: wobbleAngle + wobbleDirection + Math.PI / 8,
+            angle: 45 * this.wobbleDirection,
             duration: 100,
             ease: 'Power0',
             yoyo: true,
             repeat: 0,
-            onComplete: () => {
-                wobbleAngle -= wobbleDirection * Math.PI / 4;
-            }
         });
     }
 }
