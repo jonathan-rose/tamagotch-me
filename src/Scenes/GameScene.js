@@ -36,8 +36,8 @@ export default class GameScene extends Phaser.Scene {
 
         this.add.image(400, 300, 'gameBackground').setDepth(-2);
         
-        // egg = new Egg(this, this.petStart.x, this.petStart.y);
-        pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
+        egg = new Egg(this, this.petStart.x, this.petStart.y);
+        // pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
     }
 
     /**
