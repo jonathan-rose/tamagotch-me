@@ -84,6 +84,10 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.audio('die', ['assets/audio/die.mp3']);
         this.load.audio('eat', ['assets/audio/eat.mp3']);
         this.load.audio('flush', ['assets/audio/flush.mp3']);
+        this.load.audio('poo1', ['assets/audio/poo1.mp3']);
+        this.load.audio('poo2', ['assets/audio/poo2.mp3']);
+        this.load.audio('poo3', ['assets/audio/poo3.mp3']);
+        this.load.audio('poo-long', ['assets/audio/poo-long.mp3']);
 
         // remove progress bar when complete
         this.load.on('complete', function () {
