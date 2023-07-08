@@ -83,6 +83,17 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('border5', 'assets/img/border-fc7a57-f6f7eb.png');
         this.load.image('border6', 'assets/img/border-52b752-f6db3c.png');
 
+        this.load.image('foodIconBlack', 'assets/img/foodIcon.png');
+        this.load.image('foodIconGrey', 'assets/img/foodIconGreyedOut.png');
+        this.load.image('playIconBlack', 'assets/img/playIcon.png');
+        this.load.image('playIconGrey', 'assets/img/playIconGreyedOut.png');
+        this.load.image('flushIconBlack', 'assets/img/duckIcon.png');
+        this.load.image('flushIconGrey', 'assets/img/duckIconGreyedOut.png');
+        this.load.image('medicineIconBlack', 'assets/img/medicineIcon.png');
+        this.load.image('medicineIconGrey', 'assets/img/medicineIconGreyedOut.png');
+
+        this.load.image('flushWipe', 'assets/img/flushWipe.png');
+
         this.load.audio('music', ['assets/audio/Ambler.mp3']);
         this.load.audio('cheep-mid', ['assets/audio/cheep-mid.mp3']);
         this.load.audio('cheep-high', ['assets/audio/cheep-high.mp3']);
