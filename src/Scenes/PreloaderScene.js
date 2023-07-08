@@ -72,7 +72,7 @@ export default class PreloaderScene extends Phaser.Scene {
         // load assets needed in our game
         this.load.image('logo', 'assets/img/logo.png');
         this.load.image('gameBackground', 'assets/img/background.png');
-        this.load.image('pet', 'assets/img/pet.png')
+        this.load.spritesheet('pet', 'assets/img/petSpritesheet-big.png', {frameWidth: 192, frameHeight: 192});
 
         this.load.audio('music', ['assets/audio/Ambler.mp3']);
         this.load.audio('cheep-mid', ['assets/audio/cheep-mid.mp3']);

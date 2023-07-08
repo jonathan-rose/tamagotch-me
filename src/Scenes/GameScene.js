@@ -23,7 +23,8 @@ export default class GameScene extends Phaser.Scene {
         }
 
         this.add.image(400, 300, 'gameBackground');
-        this.pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
+        
+        const pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
     }
 
     /**
