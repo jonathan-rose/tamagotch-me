@@ -1,4 +1,5 @@
 import 'phaser';
+import Poo from '../Objects/Poo';
 
 export default class Pet extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture) {
@@ -8,7 +9,10 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         this.y = y;
         this.texture = texture;
         this.frameRate = 3;
+        this.setDepth(0);
         // this.setScale(1);
+
+        this.poos = new Phaser.GameObjects.Group(this.scene);
 
         this.anims.create({
             key: 'idle',
@@ -42,5 +46,49 @@ export default class Pet extends Phaser.GameObjects.Sprite {
 
         // this.scene.physics.add.existing(this);
         this.scene.add.existing(this);
+    }
+
+    moveLeft() {
+        this.x -= 5;
+        this.flipX = true;
+    }
+    
+    moveRight() {
+        this.x += 5;
+        this.flipX = false;
+    }
+
+    doPoo() {
+        let petCurrentPosition = this.getBottomCenter();
+
+        var offsetX = 0;
+
+        switch (this.flipX) {
+            case true:
+                offsetX = (this.width / 2);
+                break;
+            case false:
+                offsetX = -(this.width / 2);
+                break;
+        }
+
+        var offsetY = Phaser.Math.Between(-30, 30);
+
+        let newPoo = new Poo(
+            this.scene, 
+            petCurrentPosition.x + offsetX, 
+            petCurrentPosition.y + offsetY);
+
+        let f = Math.random();
+        var pooDepth = 0;
+
+        if (f < 0.5) {
+            pooDepth = -1;
+        } else {
+            pooDepth = 1;
+        }
+        newPoo.depth = pooDepth;
+
+        this.poos.add(newPoo);
     }
 }
