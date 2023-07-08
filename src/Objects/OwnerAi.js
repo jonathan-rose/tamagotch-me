@@ -67,7 +67,8 @@ export default class OwnerAi {
         let timeSinceLastFeed = this.scene.time.now - this.scene.lastFeedTime;
         let timeSinceLastFlush = this.scene.time.now - this.scene.lastFlushTime;
 
-        if (totalPoopAge > this.maxPoopAgeThreshold) {
+        if (totalPoopAge > this.maxPoopAgeThreshold
+           && timeSinceLastFlush > 4000) {
             return 'flush';
         } else if (timeSinceLastFeed > this.maxFeedThreshold) {
             return 'feed';
