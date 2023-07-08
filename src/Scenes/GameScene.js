@@ -46,27 +46,8 @@ export default class GameScene extends Phaser.Scene {
         this.pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
 
         this.border = this.add.image(300, 300, 'border6');
-        this.border.depth = 100;
+        this.border.depth = 99999999;
         this.border.scale = 0.75;
-    }
-
-    /**
-     * Play a random poo sound, 1% chance for super long poo
-     */
-    playPooSound() {
-        let options = [];
-        for (var i = 0; i < 33; i++) {
-            options.push('poo1');
-            options.push('poo2');
-            options.push('poo3');
-        }
-        options.push('poo-long');
-
-        if (this.model.soundOn === true)
-        {
-            let choice = Util.randNth(options);
-            this.sound.play(choice);
-        }
     }
 
     update () {
@@ -85,7 +66,6 @@ export default class GameScene extends Phaser.Scene {
 
         if (Phaser.Input.Keyboard.JustUp(keys.space)) {
             this.pet.doPoop();
-            this.playPooSound();
         }
     }
 
@@ -99,7 +79,7 @@ export default class GameScene extends Phaser.Scene {
     }
 
     /**
-     * Remove all poos from the play area.
+     * Remove all poops from the play area.
      */
     flush() {
         this.lastFlushTime = this.time.now;

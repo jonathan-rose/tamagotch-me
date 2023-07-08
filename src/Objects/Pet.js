@@ -1,4 +1,5 @@
 import 'phaser';
+import Util from '../Util';
 import Poop from './Poop';
 
 export default class Pet extends Phaser.GameObjects.Sprite {
@@ -9,7 +10,7 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         this.y = y;
         this.texture = texture;
         this.frameRate = 3;
-        this.setDepth(1);
+        this.setDepth(y + (this.displayHeight / 2));
         this.setScale(0.75);
 
         this.poops = new Phaser.GameObjects.Group(this.scene);
@@ -31,20 +32,17 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         this.anims.create({
             key: 'eat',
             frames: this.anims.generateFrameNumbers('pet', { frames: [ 8, 9, 10, 11] }),
-            frameRate: this.frameRate,
-            repeat: -1
+            frameRate: this.frameRate
         });
 
         this.anims.create({
             key: 'poop',
             frames: this.anims.generateFrameNumbers('pet', { frames: [ 12, 13, 14, 15] }),
-            frameRate: this.frameRate,
-            repeat: -1
+            frameRate: this.frameRate
         });
 
         this.play('idle');
 
-        // this.scene.physics.add.existing(this);
         this.scene.add.existing(this);
     }
 
@@ -58,18 +56,35 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         this.flipX = false;
     }
 
+    /**
+     * Orchestrate the timings of poop creation, sound and animations
+     */
     doPoop() {
+        // do pooping animation
+
+        this.play('poop');
+        this.on('animationcomplete', (animation, frame, pet, frameKey) => {pet.play('idle');});
+
+        this.scene.time.delayedCall(500, this.addPoop, null, this);
+    }
+
+    /**
+     * Add a new poop to the scene.
+     */
+    addPoop() {
+        this.playPoopSound();
+
         let petCurrentPosition = this.getBottomCenter();
 
         var offsetX = 0;
 
         switch (this.flipX) {
-            case true:
-                offsetX = (this.width / 2);
-                break;
-            case false:
-                offsetX = -(this.width / 2);
-                break;
+        case true:
+            offsetX = (this.width / 2);
+            break;
+        case false:
+            offsetX = -(this.width / 2);
+            break;
         }
 
         var offsetY = Phaser.Math.Between(-30, 30);
@@ -78,18 +93,25 @@ export default class Pet extends Phaser.GameObjects.Sprite {
             this.scene,
             petCurrentPosition.x + offsetX,
             petCurrentPosition.y + offsetY);
+    }
 
-        let f = Math.random();
-        var poopDepth = 0;
-
-        if (f < 0.5) {
-            poopDepth = 0;
-        } else {
-            poopDepth = 2;
+    /**
+     * Play a random poop sound, 1% chance for super long poop
+     */
+    playPoopSound() {
+        let options = [];
+        for (var i = 0; i < 33; i++) {
+            options.push('poop1');
+            options.push('poop2');
+            options.push('poop3');
         }
-        newPoop.depth = poopDepth;
+        options.push('poop-long');
 
-        this.poops.add(newPoop);
+        if (this.scene.model.soundOn === true)
+        {
+            let choice = Util.randNth(options);
+            this.scene.sound.play(choice);
+        }
     }
 
     update() {
