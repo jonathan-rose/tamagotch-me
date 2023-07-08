@@ -76,7 +76,7 @@ export default class GameScene extends Phaser.Scene {
         }
 
         if (Phaser.Input.Keyboard.JustUp(keys.space)) {
-            pet.doPoo();
+            pet.doPoop();
             this.playPooSound();
         }
     }
