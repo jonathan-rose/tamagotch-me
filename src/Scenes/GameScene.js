@@ -2,9 +2,9 @@ import 'phaser';
 import Util from '../Util';
 import Pet from '../Objects/Pet';
 import Egg from '../Objects/Egg';
+import OwnerAi from '../Objects/OwnerAi.js';
 
 var keys;
-var pet;
 var egg;
 
 export default class GameScene extends Phaser.Scene {
@@ -17,7 +17,11 @@ export default class GameScene extends Phaser.Scene {
         this.model = this.sys.game.globals.model;
         this.petStart = new Phaser.Math.Vector2(this.cameras.main.width/ 2, this.cameras.main.height / 2);
 
-        this.sys.game.globals.startTime = Date.now();
+        this.sys.game.globals.startTime = this.time.now;
+        this.lastFeedTime = this.time.now;
+        this.lastFlushTime = this.time.now;
+        this.lastPlayTime = this.time.now;
+        this.lastMedicineTime = this.time.now;
 
         this.music = this.sound.add('music', { volume: 0.2, loop: true });
         this.sys.game.globals.musicTrack = this.music;
@@ -25,6 +29,8 @@ export default class GameScene extends Phaser.Scene {
             this.music.play();
             this.model.musicPlaying = true;
         }
+
+        this.owner = new OwnerAi(this);
 
         keys = this.input.keyboard.addKeys({
             // 'up': Phaser.Input.Keyboard.KeyCodes.UP,
@@ -34,13 +40,14 @@ export default class GameScene extends Phaser.Scene {
             'space': Phaser.Input.Keyboard.KeyCodes.SPACE,
         });
 
-        this.add.image(400, 400, 'gameBackground');
+        this.add.image(300, 300, 'gameBackground');
 
         // egg = new Egg(this, this.petStart.x, this.petStart.y);
-        pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
+        this.pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
 
-        this.border = this.add.image(400, 400, 'border6');
+        this.border = this.add.image(300, 300, 'border6');
         this.border.depth = 100;
+        this.border.scale = 0.75;
     }
 
     /**
@@ -64,20 +71,61 @@ export default class GameScene extends Phaser.Scene {
 
     update () {
         this.inputHandler();
+        this.pet.update();
     }
 
     inputHandler () {
         if (keys.left.isDown) {
-            pet.moveLeft();
+            this.pet.moveLeft();
         }
 
         if (keys.right.isDown) {
-            pet.moveRight();
+            this.pet.moveRight();
         }
 
         if (Phaser.Input.Keyboard.JustUp(keys.space)) {
-            pet.doPoop();
+            this.pet.doPoop();
             this.playPooSound();
         }
+    }
+
+    /**
+     * Add some food to the play area.
+     */
+    feed() {
+        this.lastFeedTime = this.time.now;
+        // @TODO: implement me
+        console.log("FEEDING PET");
+    }
+
+    /**
+     * Remove all poos from the play area.
+     */
+    flush() {
+        this.lastFlushTime = this.time.now;
+        // @TODO: implement me
+        console.log("FLUSHING");
+    }
+
+    /**
+     * Play a game with the Tamagotch-me™.
+     *
+     * #stretchgoals
+     */
+    play() {
+        this.lastPlayTime = this.time.now;
+        // @TODO: implement me
+        console.log("PLAYING GAME");
+    }
+
+    /**
+     * Give the Tamagotch-me™ medicine.
+     *
+     * #stretchgoals
+     */
+    medicine() {
+        this.lastMedicineTime = this.time.now;
+        // @TODO: implement me
+        console.log("MEDICINE");
     }
 }

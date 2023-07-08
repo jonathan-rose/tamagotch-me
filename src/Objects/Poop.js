@@ -6,10 +6,15 @@ export default class Poo extends Phaser.GameObjects.Sprite {
         this.scene = scene;
         this.x = x;
         this.y = y;
+        this.age = 0;
 
         this.setOrigin(0.5, 1);
         this.setDepth(0);
 
         this.scene.add.existing(this);
+    }
+
+    update() {
+        this.age++;
     }
 }
