@@ -76,6 +76,13 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('egg', 'assets/img/egg.png');
         this.load.spritesheet('pet', 'assets/img/petSpritesheet-big.png', {frameWidth: 192, frameHeight: 192});
 
+        this.load.image('border1', 'assets/img/border-005200-bce784.png');
+        this.load.image('border2', 'assets/img/border-0eb1d2-dad2d8.png');
+        this.load.image('border3', 'assets/img/border-3b429f-00e8fc.png');
+        this.load.image('border4', 'assets/img/border-f03a47-7a306c.png');
+        this.load.image('border5', 'assets/img/border-fc7a57-f6f7eb.png');
+        this.load.image('border6', 'assets/img/border-52b752-f6db3c.png');
+
         this.load.audio('music', ['assets/audio/Ambler.mp3']);
         this.load.audio('cheep-mid', ['assets/audio/cheep-mid.mp3']);
         this.load.audio('cheep-high', ['assets/audio/cheep-high.mp3']);

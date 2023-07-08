@@ -34,10 +34,12 @@ export default class GameScene extends Phaser.Scene {
             'space': Phaser.Input.Keyboard.KeyCodes.SPACE,
         });
 
-        this.add.image(400, 300, 'gameBackground').setDepth(-2);
-        
+        this.add.image(400, 400, 'gameBackground');
+
         // egg = new Egg(this, this.petStart.x, this.petStart.y);
         pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
+
+        this.add.image(400, 400, 'border6');
     }
 
     /**
