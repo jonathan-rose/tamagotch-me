@@ -15,7 +15,6 @@ export default class Egg extends Phaser.GameObjects.Sprite {
             key: 'crack',
             frames: this.anims.generateFrameNumbers('egg', { frames: [ 0, 1, 2 ] }),
             frameRate: 2,
-            repeat: 1,
             hideOnComplete: true,
         });
 
@@ -25,9 +24,10 @@ export default class Egg extends Phaser.GameObjects.Sprite {
         this.createWobbleTimer();
 
         this.setInteractive();
-        this.on('pointerdown', function () { 
-            this.wobbleEgg()
-            this.clickEgg() }, this);
+        this.on('pointerdown', function () {
+            this.wobbleEgg();
+            this.clickEgg();
+        }, this);
         this.scene.physics.add.existing(this);
         this.scene.add.existing(this);
 
@@ -36,12 +36,11 @@ export default class Egg extends Phaser.GameObjects.Sprite {
     createWobbleTimer () {
         this.timer = this.scene.time.addEvent({
             delay: 1000,
-            callback: function () { this.wobbleEgg() },
+            callback: function () { this.wobbleEgg(); },
             callbackScope: this,
             repeat: -1,
             loop: true
-            }
-        )
+        });
     }
 
     wobbleEgg () {
@@ -58,21 +57,20 @@ export default class Egg extends Phaser.GameObjects.Sprite {
             targets: this,
             x: this.x - (wobbleMagnitude * wobbleDirection),
             duration: wobbleDuration / 2,
-            // ease: 'Bounce.In',
             yoyo: true,
             repeat: 0,
             onComplete: () => {
                 this.x = this.initX;
             }
         });
-        
+
         this.checkClicks();
     }
 
     clickEgg () {
         if (this.hatchStart == false) {
             this.hatchStart = true;
-            this.scene.sound.play('battery');
+            // this.scene.sound.play('battery');
         }
 
         this.wobbleClickCount += 1;

@@ -34,8 +34,6 @@ export default class GameScene extends Phaser.Scene {
         this.owner = new OwnerAi(this);
 
         keys = this.input.keyboard.addKeys({
-            // 'up': Phaser.Input.Keyboard.KeyCodes.UP,
-            // 'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
             'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
             'right': Phaser.Input.Keyboard.KeyCodes.RIGHT,
             'space': Phaser.Input.Keyboard.KeyCodes.SPACE,
@@ -44,8 +42,8 @@ export default class GameScene extends Phaser.Scene {
         this.add.image(300, 300, 'gameBackground');
 
         egg = new Egg(this, this.petStart.x, this.petStart.y);
-        pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
-        pet.visible = false;
+        this.pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
+        this.pet.visible = false;
 
         this.border = this.add.image(300, 300, 'border6');
         this.border.depth = 99999999;
@@ -65,31 +63,32 @@ export default class GameScene extends Phaser.Scene {
 
         if (game.sound.context.state === 'suspended') {
             game.sound.context.resume();
-          
+        }
         this.pet.update();
     }
 
     inputHandler () {
-        if (pet.visible == false) {
+        if (this.pet.visible == false) {
             return;
         } else {
             if (keys.left.isDown) {
-                pet.moveLeft();
+                this.pet.moveLeft();
             }
-    
+
             if (keys.right.isDown) {
-                pet.moveRight();
+                this.pet.moveRight();
             }
-    
+
             if (Phaser.Input.Keyboard.JustUp(keys.space)) {
-                pet.doPoop();
-                this.playPooSound();
+                this.pet.doPoop();
             }
         }
     }
 
     setPetVisible () {
-        pet.visible = true;
+        this.pet.visible = true;
+        this.owner.begin();
+        this.narration.begin();
     }
 
     /**
@@ -104,7 +103,7 @@ export default class GameScene extends Phaser.Scene {
 
         this.foodIcon.setTexture('foodIconBlack');
         this.time.delayedCall(800, () => {
-            this.foodIcon.setTexture('foodIconGrey')
+            this.foodIcon.setTexture('foodIconGrey');
         }, null, this);
     }
 
@@ -143,7 +142,7 @@ export default class GameScene extends Phaser.Scene {
 
         this.flushIcon.setTexture('flushIconBlack');
         this.time.delayedCall(800, () => {
-            this.flushIcon.setTexture('flushIconGrey')
+            this.flushIcon.setTexture('flushIconGrey');
         }, null, this);
     }
 
@@ -153,8 +152,6 @@ export default class GameScene extends Phaser.Scene {
 
     /**
      * Play a game with the Tamagotch-me™.
-     *
-     * #stretchgoals
      */
     play() {
         this.lastPlayTime = this.time.now;
@@ -166,7 +163,7 @@ export default class GameScene extends Phaser.Scene {
 
         this.playIcon.setTexture('playIconBlack');
         this.time.delayedCall(800, () => {
-            this.playIcon.setTexture('playIconGrey')
+            this.playIcon.setTexture('playIconGrey');
         }, null, this);
     }
 
@@ -176,19 +173,14 @@ export default class GameScene extends Phaser.Scene {
             ball.playedWith = true;
 
             this.tweens.add({
-            targets: ball,
-            x: "-=450",
-            y: "-=300",
-            onComplete: () => {
-                ball.destroy();
-            }
-        });
+                targets: ball,
+                x: "-=450",
+                y: "-=300",
+                onComplete: () => {
+                    ball.destroy();
+                }
+            });
         }
-
-        // if (this.model.soundOn === true)
-        // {
-        //     this.sound.play('eat');
-        // }
     }
 
     /**
