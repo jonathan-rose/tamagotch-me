@@ -44,7 +44,7 @@ export default class GameScene extends Phaser.Scene {
         });
 
         this.input.on('pointerdown', function () {
-            if (this.pet.visible == true) { 
+            if (this.pet.visible == true) {
                 this.pet.doPoop()
             }
         }, this);
@@ -78,6 +78,7 @@ export default class GameScene extends Phaser.Scene {
     }
 
     inputHandler () {
+        if (this.ending) { return; }
         if (this.pet.visible == false) {
             return;
         } else {
@@ -89,7 +90,7 @@ export default class GameScene extends Phaser.Scene {
                 this.pet.moveRight();
             }
 
-            if (Phaser.Input.Keyboard.JustUp(keys.space) || 
+            if (Phaser.Input.Keyboard.JustUp(keys.space) ||
                 Phaser.Input.Keyboard.JustUp(keys.s) ||
                 Phaser.Input.Keyboard.JustUp(keys.down) ||
                 Phaser.Input.Keyboard.JustUp(keys.enter)) {
@@ -213,6 +214,8 @@ export default class GameScene extends Phaser.Scene {
     }
 
     outro() {
+        this.ending = true;
+
         this.tweens.add({
             targets: this.music,
             volume: 0,
@@ -230,7 +233,12 @@ export default class GameScene extends Phaser.Scene {
                 ],
                 alpha: 0,
                 duration: 4000
-        });
+            });
+            this.tweens.add({
+                targets: this.pet.poops.children.entries,
+                alpha: 0,
+                duration: 3000
+            });
         }, null, this);
 
         this.time.delayedCall(4000, () => {
