@@ -17,6 +17,12 @@ export default class OwnerAi {
         const config = {
             delay: 1000,
             callback: () => {
+                // randomly forget to act, gets more likely as narrative progresses.
+                let r = Math.floor(Math.random() * this.scene.narration.messages.length);
+                if (r < this.scene.progress) {
+                    return;
+                }
+
                 let choice = this.decideAction();
                 if (choice == "none") {
                     this.attemptsSinceLastAction++;
@@ -47,9 +53,6 @@ export default class OwnerAi {
      *
      * Feeding is also important, so if we exceed that threshold we'll
      * give the Tamagotch-me™ some food.
-     *
-     * @TODO: figure out medicine and play conditions once those
-     * features are implemented.
      *
      * If there's nothing pressing and we've passed on several
      * consecutive decisions we should randmoly pick between, feed,
@@ -87,7 +90,7 @@ export default class OwnerAi {
             // nothing pressing, force an action if it's been a while
             if (this.attemptsSinceLastAction >= this.attemptsThreshold) {
                 // you can always feed the pet
-                let options = ['feed', 'play'];
+                let options = ['feed', 'feed', 'play', 'play', 'play'];
 
                 // if there are poops we can flush
                 if (poopCount > 0) {

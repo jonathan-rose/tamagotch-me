@@ -17,7 +17,7 @@ export default class GameScene extends Phaser.Scene {
         this.config = this.game.config;
         this.model = this.sys.game.globals.model;
         this.petStart = new Phaser.Math.Vector2(this.cameras.main.width/ 2, this.cameras.main.height / 2);
-
+        this.progress = 0;
         this.sys.game.globals.startTime = this.time.now;
         this.lastFeedTime = this.time.now;
         this.lastFlushTime = this.time.now;
@@ -89,6 +89,12 @@ export default class GameScene extends Phaser.Scene {
         this.pet.visible = true;
         this.owner.begin();
         this.narration.begin();
+
+        // reset AI timers
+        this.lastFeedTime = this.time.now;
+        this.lastFlushTime = this.time.now;
+        this.lastPlayTime = this.time.now;
+        this.lastMedicineTime = this.time.now;
     }
 
     /**
