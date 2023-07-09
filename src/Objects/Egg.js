@@ -9,7 +9,7 @@ export default class Egg extends Phaser.GameObjects.Sprite {
 
         this.initX = x;
         this.wobbleClickCount = 0;
-        this.hatchStart = false;
+        this.hatchStart = true;
 
         this.anims.create({
             key: 'crack',

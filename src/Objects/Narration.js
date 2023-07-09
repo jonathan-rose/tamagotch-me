@@ -28,8 +28,8 @@ export default class Narration extends Phaser.GameObjects.Container {
         ];
         this.finalMessage = "Finally acceptance. Forgotten and alone, you see in the new millenium.";
 
-        this.onScreenTime = 5000;
-        this.betweenTime = 10000;
+        this.onScreenTime = 8000;
+        this.betweenTime = 13000;
         this.maxAlpha = 0.85;
 
         this.text = new Phaser.GameObjects.Text(
@@ -53,6 +53,7 @@ export default class Narration extends Phaser.GameObjects.Container {
 
         const config = {
             delay: this.betweenTime,
+            startAt: 10000,
             callback: this.nextMessage,
             callbackScope: this,
             repeat: this.messages.length - 1
@@ -93,6 +94,7 @@ export default class Narration extends Phaser.GameObjects.Container {
         }, null, this);
 
         this.messageIndex++;
+        this.scene.progress++;
     }
 
     showFinalMessage() {
