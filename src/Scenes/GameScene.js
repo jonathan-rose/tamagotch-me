@@ -2,7 +2,8 @@ import 'phaser';
 import Util from '../Util';
 import Pet from '../Objects/Pet';
 import Egg from '../Objects/Egg';
-import OwnerAi from '../Objects/OwnerAi.js';
+import OwnerAi from '../Objects/OwnerAi';
+import Narration from '../Objects/Narration';
 
 var keys;
 var egg;
@@ -53,6 +54,9 @@ export default class GameScene extends Phaser.Scene {
         this.playIcon = this.add.image(250, 460, 'playIconGrey');
         this.flushIcon = this.add.image(350, 460, 'flushIconGrey');
         this.medicineIcon = this.add.image(450, 460, 'medicineIconGrey');
+
+        this.narration = new Narration(this, (this.cameras.main.width / 2), 100);
+        this.add.existing(this.narration);
     }
 
     update () {
@@ -181,6 +185,5 @@ export default class GameScene extends Phaser.Scene {
     medicine() {
         this.lastMedicineTime = this.time.now;
         // @TODO: implement me
-        console.log("MEDICINE");
     }
 }

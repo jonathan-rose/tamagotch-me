@@ -10,7 +10,7 @@ export default class PreloaderScene extends Phaser.Scene {
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
         progressBox.fillStyle(0x222222, 0.8);
-        progressBox.fillRect(240, 270, 320, 50);
+        progressBox.fillRect(140, 270, 320, 50);
 
         var width = this.cameras.main.width;
         var height = this.cameras.main.height;
@@ -52,7 +52,7 @@ export default class PreloaderScene extends Phaser.Scene {
             percentText.setText(parseInt(value * 100) + '%');
             progressBar.clear();
             progressBar.fillStyle(0xffffff, 1);
-            progressBar.fillRect(250, 280, 300 * value, 30);
+            progressBar.fillRect(150, 280, 300 * value, 30);
         });
 
         // update file progress text
@@ -95,6 +95,8 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('medicineIconGrey', 'assets/img/medicineIconGreyedOut.png');
 
         this.load.image('flushWipe', 'assets/img/flushWipe.png');
+
+        this.load.image('narration', 'assets/img/narration.png');
 
         this.load.audio('music', ['assets/audio/Ambler.mp3']);
         this.load.audio('cheep-mid', ['assets/audio/cheep-mid.mp3']);
