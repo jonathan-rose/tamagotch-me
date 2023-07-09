@@ -65,20 +65,28 @@ export default class GameScene extends Phaser.Scene {
 
     update () {
         this.inputHandler();
+
+        if (game.sound.context.state === 'suspended') {
+            game.sound.context.resume();
+        }
     }
 
     inputHandler () {
-        if (keys.left.isDown) {
-            pet.moveLeft();
-        }
-
-        if (keys.right.isDown) {
-            pet.moveRight();
-        }
-
-        if (Phaser.Input.Keyboard.JustUp(keys.space)) {
-            pet.doPoop();
-            this.playPooSound();
+        if (pet.visible == false) {
+            return;
+        } else {
+            if (keys.left.isDown) {
+                pet.moveLeft();
+            }
+    
+            if (keys.right.isDown) {
+                pet.moveRight();
+            }
+    
+            if (Phaser.Input.Keyboard.JustUp(keys.space)) {
+                pet.doPoop();
+                this.playPooSound();
+            }
         }
     }
 
