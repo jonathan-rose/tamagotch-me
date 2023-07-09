@@ -140,8 +140,37 @@ export default class GameScene extends Phaser.Scene {
      */
     play() {
         this.lastPlayTime = this.time.now;
-        // @TODO: implement me
-        console.log("PLAYING GAME");
+
+        this.ball = this.add.sprite(450, 300, 'ball');
+        this.ball.playedWith = false;
+        this.physics.add.existing(this.ball);
+        this.physics.add.collider(this.ball, this.pet, this.doPlay, null, this);
+
+        this.playIcon.setTexture('playIconBlack');
+        this.time.delayedCall(800, () => {
+            this.playIcon.setTexture('playIconGrey')
+        }, null, this);
+    }
+
+    doPlay(ball, pet) {
+        if (!ball.playedWith) {
+            pet.doPlay();
+            ball.playedWith = true;
+
+            this.tweens.add({
+            targets: ball,
+            x: "-=450",
+            y: "-=300",
+            onComplete: () => {
+                ball.destroy();
+            }
+        });
+        }
+
+        // if (this.model.soundOn === true)
+        // {
+        //     this.sound.play('eat');
+        // }
     }
 
     /**
