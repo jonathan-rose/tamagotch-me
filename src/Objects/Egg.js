@@ -13,8 +13,8 @@ export default class Egg extends Phaser.GameObjects.Sprite {
 
         this.anims.create({
             key: 'crack',
-            frames: this.anims.generateFrameNumbers('egg', { frames: [ 0, 1, 2 ] }),
-            frameRate: 2,
+            frames: this.anims.generateFrameNumbers('egg', { frames: [ 0, 1, 2, 3 ] }),
+            frameRate: 1,
             hideOnComplete: true,
         });
 
@@ -77,7 +77,7 @@ export default class Egg extends Phaser.GameObjects.Sprite {
     }
 
     checkClicks () {
-        if (this.wobbleClickCount >= 10) {
+        if (this.wobbleClickCount >= 6) {
             this.disableInteractive();
             this.timer.reset();
             this.scene.tweens.killTweensOf(this);
