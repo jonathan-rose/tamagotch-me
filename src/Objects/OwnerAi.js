@@ -23,7 +23,6 @@ export default class OwnerAi {
                 } else {
                     this.attemptsSinceLastAction = 0;
                 }
-                console.log("performing action: ", choice);
                 this.performAction(choice);
             },
             callbackScope: this,

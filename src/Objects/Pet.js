@@ -47,12 +47,20 @@ export default class Pet extends Phaser.GameObjects.Sprite {
     }
 
     moveLeft() {
-        this.x -= 5;
+        if (this.x - 5 < 120) {
+            this.x = 120;
+        } else {
+            this.x -= 5;
+        }
         this.flipX = true;
     }
 
     moveRight() {
-        this.x += 5;
+        if (this.x + 5 > (560 - 81)) {
+            this.x = (560 - 81);
+        } else {
+            this.x += 5;
+        }
         this.flipX = false;
     }
 
@@ -91,7 +99,7 @@ export default class Pet extends Phaser.GameObjects.Sprite {
 
         let newPoop = new Poop(
             this.scene,
-            petCurrentPosition.x + offsetX,
+            Math.max(Math.min(petCurrentPosition.x + offsetX, 495), 100),
             petCurrentPosition.y + offsetY);
 
         this.poops.add(newPoop);
