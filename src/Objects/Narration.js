@@ -26,7 +26,7 @@ export default class Narration extends Phaser.GameObjects.Container {
             "A summer spent at camp. Apart. Alone.",
             "Months of solitude. Contemplation. Emptiness."
         ];
-        this.finalMessage = "Finally acceptance. Forgotten and alone, you see in the new millenium.";
+        this.finalMessage = "Finally acceptance. Forgotten and alone, you await the new millenium.";
 
         this.onScreenTime = 8000;
         this.betweenTime = 13000;
@@ -104,5 +104,7 @@ export default class Narration extends Phaser.GameObjects.Container {
             alpha: this.maxAlpha,
             duration: 300
         });
+
+        this.scene.outro();
     }
 }

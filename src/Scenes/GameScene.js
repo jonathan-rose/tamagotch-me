@@ -6,7 +6,6 @@ import OwnerAi from '../Objects/OwnerAi';
 import Narration from '../Objects/Narration';
 
 var keys;
-var egg;
 
 export default class GameScene extends Phaser.Scene {
     constructor () {
@@ -41,7 +40,7 @@ export default class GameScene extends Phaser.Scene {
 
         this.add.image(300, 300, 'gameBackground');
 
-        egg = new Egg(this, this.petStart.x, this.petStart.y);
+        this.egg = new Egg(this, this.petStart.x, this.petStart.y);
         this.pet = new Pet(this, this.petStart.x, this.petStart.y, 'pet');
         this.pet.visible = false;
 
@@ -197,5 +196,26 @@ export default class GameScene extends Phaser.Scene {
     medicine() {
         this.lastMedicineTime = this.time.now;
         // @TODO: implement me
+    }
+
+    outro() {
+        this.time.delayedCall(3000, () => {
+            this.tweens.add({
+                targets: [
+                    this.pet,
+                    this.foodIcon,
+                    this.playIcon,
+                    this.flushIcon,
+                    this.medicineIcon
+                ],
+                alpha: 0,
+                duration: 4000
+        });
+        }, null, this);
+
+        this.time.delayedCall(3500, () => {
+            this.pet.play('death');
+            this.sound.play('die');
+        }, null, this);
     }
 }

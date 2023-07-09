@@ -40,6 +40,12 @@ export default class Pet extends Phaser.GameObjects.Sprite {
             frameRate: this.frameRate
         });
 
+        this.anims.create({
+            key: 'death',
+            frames: this.anims.generateFrameNumbers('pet', { frames: [ 16, 17, 18, 19] }),
+            frameRate: this.frameRate
+        });
+
         this.play('idle');
 
         this.scene.add.existing(this);
