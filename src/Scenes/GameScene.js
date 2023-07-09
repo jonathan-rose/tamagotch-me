@@ -35,8 +35,19 @@ export default class GameScene extends Phaser.Scene {
         keys = this.input.keyboard.addKeys({
             'left': Phaser.Input.Keyboard.KeyCodes.LEFT,
             'right': Phaser.Input.Keyboard.KeyCodes.RIGHT,
+            'down': Phaser.Input.Keyboard.KeyCodes.DOWN,
             'space': Phaser.Input.Keyboard.KeyCodes.SPACE,
+            'a': Phaser.Input.Keyboard.KeyCodes.A,
+            'd': Phaser.Input.Keyboard.KeyCodes.D,
+            's': Phaser.Input.Keyboard.KeyCodes.S,
+            'enter': Phaser.Input.Keyboard.KeyCodes.ENTER,
         });
+
+        this.input.on('pointerdown', function () {
+            if (this.pet.visible == true) { 
+                this.pet.doPoop()
+            }
+        }, this);
 
         this.add.image(300, 300, 'gameBackground');
 
@@ -70,15 +81,18 @@ export default class GameScene extends Phaser.Scene {
         if (this.pet.visible == false) {
             return;
         } else {
-            if (keys.left.isDown) {
+            if (keys.left.isDown || keys.a.isDown) {
                 this.pet.moveLeft();
             }
 
-            if (keys.right.isDown) {
+            if (keys.right.isDown || keys.d.isDown) {
                 this.pet.moveRight();
             }
 
-            if (Phaser.Input.Keyboard.JustUp(keys.space)) {
+            if (Phaser.Input.Keyboard.JustUp(keys.space) || 
+                Phaser.Input.Keyboard.JustUp(keys.s) ||
+                Phaser.Input.Keyboard.JustUp(keys.down) ||
+                Phaser.Input.Keyboard.JustUp(keys.enter)) {
                 this.pet.doPoop();
             }
         }
