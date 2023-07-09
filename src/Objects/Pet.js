@@ -25,8 +25,7 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         this.anims.create({
             key: 'wave',
             frames: this.anims.generateFrameNumbers('pet', { frames: [ 4, 5, 6, 7] }),
-            frameRate: this.frameRate,
-            repeat: -1
+            frameRate: this.frameRate
         });
 
         this.anims.create({
@@ -117,6 +116,16 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         }
     }
 
+    playPlaySound() {
+        let options = ['cheep-mid', 'cheep-high', 'cheep-low'];
+
+        if (this.scene.model.soundOn === true)
+        {
+            let choice = Util.randNth(options);
+            this.scene.sound.play(choice);
+        }
+    }
+
     doEat() {
         // do pooping animation
 
@@ -124,6 +133,12 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         this.on('animationcomplete', (animation, frame, pet, frameKey) => {pet.play('idle');});
 
         //this.scene.time.delayedCall(500, this.addPoop, null, this);
+    }
+
+    doPlay() {
+        this.play('wave');
+        this.playPlaySound();
+        this.on('animationcomplete', (animation, frame, pet, frameKey) => {pet.play('idle');});
     }
 
     update() {
