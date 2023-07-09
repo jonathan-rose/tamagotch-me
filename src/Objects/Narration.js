@@ -59,6 +59,12 @@ export default class Narration extends Phaser.GameObjects.Container {
         };
 
         this.timer = new Phaser.Time.TimerEvent(config);
+
+        // display above border
+        this.depth = 999999999;
+    }
+
+    begin() {
         this.scene.time.addEvent(this.timer);
 
         // add final message
@@ -68,9 +74,6 @@ export default class Narration extends Phaser.GameObjects.Container {
             null,
             this
         );
-
-        // display above border
-        this.depth = 999999999;
     }
 
     nextMessage() {

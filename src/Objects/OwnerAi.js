@@ -30,6 +30,9 @@ export default class OwnerAi {
         };
 
         this.timer = new Phaser.Time.TimerEvent(config);
+    }
+
+    begin() {
         this.scene.time.addEvent(this.timer);
     }
 
@@ -54,6 +57,11 @@ export default class OwnerAi {
      */
     decideAction() {
 
+        // if we're an egg do nothing
+        if (!this.scene.pet.visible) {
+            return 'none';
+        }
+
         // poops age each frame (roughly 60 per second)
         let poops = this.scene.pet.poops;
         let poopCount = poops.getLength();
@@ -71,9 +79,6 @@ export default class OwnerAi {
             return 'flush';
         } else if (timeSinceLastFeed > this.maxFeedThreshold) {
             return 'feed';
-        } else if (false) {
-            // @TODO: conditions for playing a game
-            return 'play';
         } else if (false) {
             // @TODO: conditions for giving medicine
             return 'medicine';

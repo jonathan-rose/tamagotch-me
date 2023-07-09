@@ -73,9 +73,9 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('logo', 'assets/img/logo.png');
         this.load.image('gameBackground', 'assets/img/background.png');
         this.load.image('poop', 'assets/img/poop.png');
+        this.load.spritesheet('egg', 'assets/img/eggSpritesheet.png', {frameWidth: 192, frameHeight: 192});
         this.load.image('food', 'assets/img/food.png');
         this.load.image('ball', 'assets/img/ball.png');
-        this.load.image('egg', 'assets/img/egg.png');
         this.load.spritesheet('pet', 'assets/img/petSpritesheet-big.png', {frameWidth: 192, frameHeight: 192});
 
         this.load.image('border1', 'assets/img/border-005200-bce784.png');
@@ -105,6 +105,8 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.audio('die', ['assets/audio/die.mp3']);
         this.load.audio('eat', ['assets/audio/eat.mp3']);
         this.load.audio('flush', ['assets/audio/flush.mp3']);
+        this.load.audio('battery', ['assets/audio/battery.mp3']);
+        this.load.audio('hatch', ['assets/audio/hatch.mp3']);
         this.load.audio('poop1', ['assets/audio/poop1.mp3']);
         this.load.audio('poop2', ['assets/audio/poop2.mp3']);
         this.load.audio('poop3', ['assets/audio/poop3.mp3']);

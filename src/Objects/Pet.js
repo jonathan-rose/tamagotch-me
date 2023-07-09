@@ -135,12 +135,8 @@ export default class Pet extends Phaser.GameObjects.Sprite {
     }
 
     doEat() {
-        // do pooping animation
-
         this.play('eat');
         this.on('animationcomplete', (animation, frame, pet, frameKey) => {pet.play('idle');});
-
-        //this.scene.time.delayedCall(500, this.addPoop, null, this);
     }
 
     doPlay() {
@@ -150,8 +146,6 @@ export default class Pet extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-
-        // @TODO: use iterator properly?????
         this.poops.children.iterate((p) => {p.update();}, this);
     }
 }
