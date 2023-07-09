@@ -213,6 +213,12 @@ export default class GameScene extends Phaser.Scene {
     }
 
     outro() {
+        this.tweens.add({
+            targets: this.music,
+            volume: 0,
+            duration: 1500
+        });
+
         this.time.delayedCall(3000, () => {
             this.tweens.add({
                 targets: [
@@ -227,7 +233,7 @@ export default class GameScene extends Phaser.Scene {
         });
         }, null, this);
 
-        this.time.delayedCall(3500, () => {
+        this.time.delayedCall(4000, () => {
             this.pet.play('death');
             this.sound.play('die');
         }, null, this);
