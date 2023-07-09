@@ -73,10 +73,10 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('logo', 'assets/img/logo.png');
         this.load.image('gameBackground', 'assets/img/background.png');
         this.load.image('poop', 'assets/img/poop.png');
-        this.load.spritesheet('egg', 'assets/img/eggSpritesheet.png', {frameWidth: 192, frameHeight: 192});
+        this.load.spritesheet('egg', 'assets/img/eggSpritesheet.png', {frameWidth: 195, frameHeight: 192});
         this.load.image('food', 'assets/img/food.png');
         this.load.image('ball', 'assets/img/ball.png');
-        this.load.spritesheet('pet', 'assets/img/petSpritesheet-big.png', {frameWidth: 192, frameHeight: 192});
+        this.load.spritesheet('pet', 'assets/img/petSpritesheet-bigNew.png', {frameWidth: 192, frameHeight: 192});
 
         this.load.image('border1', 'assets/img/border-005200-bce784.png');
         this.load.image('border2', 'assets/img/border-0eb1d2-dad2d8.png');
