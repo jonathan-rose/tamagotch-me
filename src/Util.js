@@ -20,6 +20,10 @@ export default class Util {
         return a || b;
     }
 
+    static sum(a, b) {
+        return a + b;
+    }
+
     /**
      * Takes an array of boolean values, returns true if EVERY element is true.
      */

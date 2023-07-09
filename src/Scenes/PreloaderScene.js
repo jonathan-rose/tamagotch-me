@@ -10,7 +10,7 @@ export default class PreloaderScene extends Phaser.Scene {
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
         progressBox.fillStyle(0x222222, 0.8);
-        progressBox.fillRect(240, 270, 320, 50);
+        progressBox.fillRect(140, 270, 320, 50);
 
         var width = this.cameras.main.width;
         var height = this.cameras.main.height;
@@ -52,7 +52,7 @@ export default class PreloaderScene extends Phaser.Scene {
             percentText.setText(parseInt(value * 100) + '%');
             progressBar.clear();
             progressBar.fillStyle(0xffffff, 1);
-            progressBar.fillRect(250, 280, 300 * value, 30);
+            progressBar.fillRect(150, 280, 300 * value, 30);
         });
 
         // update file progress text
@@ -74,6 +74,8 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('gameBackground', 'assets/img/background.png');
         this.load.image('poop', 'assets/img/poop.png');
         this.load.spritesheet('egg', 'assets/img/eggSpritesheet.png', {frameWidth: 192, frameHeight: 192});
+        this.load.image('food', 'assets/img/food.png');
+        this.load.image('ball', 'assets/img/ball.png');
         this.load.spritesheet('pet', 'assets/img/petSpritesheet-big.png', {frameWidth: 192, frameHeight: 192});
 
         this.load.image('border1', 'assets/img/border-005200-bce784.png');
@@ -83,6 +85,19 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('border5', 'assets/img/border-fc7a57-f6f7eb.png');
         this.load.image('border6', 'assets/img/border-52b752-f6db3c.png');
 
+        this.load.image('foodIconBlack', 'assets/img/foodIcon.png');
+        this.load.image('foodIconGrey', 'assets/img/foodIconGreyedOut.png');
+        this.load.image('playIconBlack', 'assets/img/playIcon.png');
+        this.load.image('playIconGrey', 'assets/img/playIconGreyedOut.png');
+        this.load.image('flushIconBlack', 'assets/img/duckIcon.png');
+        this.load.image('flushIconGrey', 'assets/img/duckIconGreyedOut.png');
+        this.load.image('medicineIconBlack', 'assets/img/medicineIcon.png');
+        this.load.image('medicineIconGrey', 'assets/img/medicineIconGreyedOut.png');
+
+        this.load.image('flushWipe', 'assets/img/flushWipe.png');
+
+        this.load.image('narration', 'assets/img/narration.png');
+
         this.load.audio('music', ['assets/audio/Ambler.mp3']);
         this.load.audio('cheep-mid', ['assets/audio/cheep-mid.mp3']);
         this.load.audio('cheep-high', ['assets/audio/cheep-high.mp3']);
@@ -90,13 +105,13 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.audio('die', ['assets/audio/die.mp3']);
         this.load.audio('eat', ['assets/audio/eat.mp3']);
         this.load.audio('flush', ['assets/audio/flush.mp3']);
-        this.load.audio('poo1', ['assets/audio/poo1.mp3']);
-        this.load.audio('poo2', ['assets/audio/poo2.mp3']);
-        this.load.audio('poo3', ['assets/audio/poo3.mp3']);
-        this.load.audio('poo-long', ['assets/audio/poo-long.mp3']);
         this.load.audio('battery', ['assets/audio/battery.mp3']);
         this.load.audio('hatch', ['assets/audio/hatch.mp3']);
-        
+        this.load.audio('poop1', ['assets/audio/poop1.mp3']);
+        this.load.audio('poop2', ['assets/audio/poop2.mp3']);
+        this.load.audio('poop3', ['assets/audio/poop3.mp3']);
+        this.load.audio('poop-long', ['assets/audio/poop-long.mp3']);
+
         // remove progress bar when complete
         this.load.on('complete', function () {
             progressBar.destroy();
