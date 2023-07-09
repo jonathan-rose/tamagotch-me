@@ -73,6 +73,7 @@ export default class PreloaderScene extends Phaser.Scene {
         this.load.image('logo', 'assets/img/logo.png');
         this.load.image('gameBackground', 'assets/img/background.png');
         this.load.image('poop', 'assets/img/poop.png');
+        this.load.image('food', 'assets/img/food.png');
         this.load.image('egg', 'assets/img/egg.png');
         this.load.spritesheet('pet', 'assets/img/petSpritesheet-big.png', {frameWidth: 192, frameHeight: 192});
 

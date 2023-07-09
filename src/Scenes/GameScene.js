@@ -79,8 +79,25 @@ export default class GameScene extends Phaser.Scene {
      */
     feed() {
         this.lastFeedTime = this.time.now;
-        // @TODO: implement me
-        console.log("FEEDING PET");
+
+        this.food = this.add.sprite(150, 300, 'food');
+        this.physics.add.existing(this.food);
+        this.physics.add.collider(this.food, this.pet, this.eat, null, this);
+
+        this.foodIcon.setTexture('foodIconBlack');
+        this.time.delayedCall(800, () => {
+            this.foodIcon.setTexture('foodIconGrey')
+        }, null, this);
+    }
+
+    eat(food, pet) {
+        food.destroy();
+        pet.doEat();
+
+        if (this.model.soundOn === true)
+        {
+            this.sound.play('eat');
+        }
     }
 
     /**

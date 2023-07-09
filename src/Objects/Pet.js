@@ -44,6 +44,7 @@ export default class Pet extends Phaser.GameObjects.Sprite {
         this.play('idle');
 
         this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
     }
 
     moveLeft() {
@@ -114,6 +115,15 @@ export default class Pet extends Phaser.GameObjects.Sprite {
             let choice = Util.randNth(options);
             this.scene.sound.play(choice);
         }
+    }
+
+    doEat() {
+        // do pooping animation
+
+        this.play('eat');
+        this.on('animationcomplete', (animation, frame, pet, frameKey) => {pet.play('idle');});
+
+        //this.scene.time.delayedCall(500, this.addPoop, null, this);
     }
 
     update() {

@@ -8,7 +8,7 @@ Clone the repo:
 
 `git clone https://github.com/jonathan-rose/tamagotch-me.git`
 
-From within the deathclocks directory, install the dependencies:
+From within the tamagotch-me directory, install the dependencies:
 
 `npm install`
 
